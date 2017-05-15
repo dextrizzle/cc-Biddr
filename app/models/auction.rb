@@ -4,7 +4,9 @@ class Auction < ApplicationRecord
   belongs_to :user
   validates :title, :details, :ends_on, :reserve_price, presence: true
   validates :title, uniqueness: true
-
+  before_create do
+    self.current_price = 1
+  end
   aasm whiny_transitions: false do
     state :draft, initial: true
     state :published
