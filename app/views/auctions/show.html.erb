@@ -6,6 +6,7 @@
 
 
 <% if @auction.user != current_user %>
+    !!!!watch this auction!!!!
 <h2>bid</h2>
   <%= simple_form_for [@auction, @bid], :url => auction_bids_path(@auction) do |f| %>
       <%= f.input :amount, as: :string %>
@@ -19,5 +20,5 @@
 
 <h2>bid history</h2>
 <% @auction.bids.each do |bid| %>
-    <p><%= bid.amount %></p>
+    <p><%= "#{bid.amount} bid by #{bid.user.firstname} #{bid.user.lastname}" %></p>
 <% end %>

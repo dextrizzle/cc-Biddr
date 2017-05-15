@@ -2,13 +2,20 @@ class Bid < ApplicationRecord
   belongs_to :auction
   belongs_to :user
   validates :auction_id, presence: true
-  validates :amount, presence: true, numericality: { greater_than: :auction_current }
+  validates :amount, presence: true
+  validate :amount_greater
 
-  def auction_current
-    auction.current_price
+  def amount_greater
+    puts "#{amount} #{auction.current_price}"
+    if amount.present? &&
+        auction.present? &&
+        amount <= auction.current_price
+      errors.add(:amount, "must be greater than the auction's current price")
+    end
   end
 
-  after_save do
-    auction.current_price = self.amount
+  after_commit do
+    auction.update_attribute(:current_price, self.amount)
   end
+
 end
