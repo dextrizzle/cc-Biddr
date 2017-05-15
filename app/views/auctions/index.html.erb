@@ -3,5 +3,14 @@
 
 <h3>auctions</h3>
 <% @auctions.each do |auction| %>
-    <p><%= link_to auction.title, auction_path(auction) %></p>
+    <p><%= link_to auction.title, auction_path(auction) %>
+    <% if auction.user == current_user %>OWNER<%end%>
+    </p>
+<% end %>
+
+<h3>auctions w/ bids</h3>
+<% @auctions_w_bids.each do |auction| %>
+    <p><%= link_to auction.title, auction_path(auction) %>
+      <% if auction.user == current_user %>OWNER<%end%>
+    </p>
 <% end %>

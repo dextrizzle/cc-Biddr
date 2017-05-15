@@ -2,6 +2,7 @@
 <p><%= @auction.details %></p>
 <p><%= @auction.ends_on %></p>
 <p><%= @auction.reserve_price %></p>
+<p><%= "#{@auction.user.firstname} #{@auction.user.lastname}" %></p>
 <%= link_to 'back', auctions_path %>
 
 

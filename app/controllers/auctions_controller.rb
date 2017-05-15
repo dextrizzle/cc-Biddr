@@ -1,6 +1,7 @@
 class AuctionsController < ApplicationController
   def index
     @auctions = Auction.all
+    @auctions_w_bids = Auction.where(current_price: 2..Float::INFINITY)
   end
   def new
     @auction = Auction.new
