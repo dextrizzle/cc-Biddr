@@ -1,7 +1,0 @@
-<h1>Your watched auctions</h1>
-
-<ul>
-  <% @auctions.each do |a| %>
-      <li><%= link_to a.auction.title, "/auctions/#{a.auction.id}" %></li>
-  <% end %>
-</ul>

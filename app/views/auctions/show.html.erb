@@ -1,4 +1,4 @@
-<h1><%= @auction.title %></h1>
+<h1><%= @auction.title %><% if @auction.draft? %> [draft]<%end%></h1>
 <p><%= @auction.details %></p>
 <p><%= @auction.ends_on %></p>
 <p><%= @auction.reserve_price %></p>
@@ -12,7 +12,7 @@
 <%= link_to 'back', auctions_path %>
 
 
-<% if @auction.user != current_user %>
+<% if @auction.user != current_user && !@auction.draft? %>
 <h2>bid</h2>
   <%= simple_form_for [@auction, @bid], :url => auction_bids_path(@auction) do |f| %>
       <%= f.input :amount, as: :string %>

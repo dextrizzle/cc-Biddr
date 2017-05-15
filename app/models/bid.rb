@@ -16,6 +16,9 @@ class Bid < ApplicationRecord
 
   after_commit do
     auction.update_attribute(:current_price, self.amount)
+    if(self.amount > auction.reserve_price)
+      auction.update_attribute(:aasm_state, 'reserve_met')
+    end
   end
 
 end
