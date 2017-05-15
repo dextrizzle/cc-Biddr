@@ -12,7 +12,9 @@
       <%= f.button :submit %>
   <% end %>
 <% else %>
-  !!!publish button here!!!
+  <% if @auction.may_publish? %>
+    <%= link_to 'Publish', auction_publishings_path(@auction), method: :post%>
+  <% end %>
 <% end %>
 
 <h2>bid history</h2>
