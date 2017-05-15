@@ -1,7 +1,7 @@
 class CreateBids < ActiveRecord::Migration[5.0]
   def change
     create_table :bids do |t|
-      t.auction :references
+      t.references :auction
       t.money :amount
 
       t.timestamps
