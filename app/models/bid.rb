@@ -6,7 +6,7 @@ class Bid < ApplicationRecord
   validate :amount_greater
 
   def amount_greater
-    puts "#{amount} #{auction.current_price}"
+    # puts "#{amount} #{auction.current_price}"
     if amount.present? &&
         auction.present? &&
         amount <= auction.current_price

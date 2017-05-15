@@ -4,9 +4,9 @@
 <p><%= @auction.reserve_price %></p>
 <p><%= "#{@auction.user.firstname} #{@auction.user.lastname}" %></p>
 <% if @watch.present? && @watch.persisted? %>
-  <%= link_to "Unwatch", auction_watch_path(@auction, @watch), method: :delete %>
+  <%= link_to fa_icon("eye-slash"), auction_watch_path(@auction, @watch), method: :delete %>
 <% else %>
-  <%= link_to "Watch", auction_watches_path(@auction), method: :post %>
+  <%= link_to fa_icon("eye"), auction_watches_path(@auction), method: :post %>
 <% end %>
 
 <%= link_to 'back', auctions_path %>
