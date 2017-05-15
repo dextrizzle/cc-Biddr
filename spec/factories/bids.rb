@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :bid do
-    references ""
-    amount ""
+    references "auction"
+    amount "200"
   end
 end
