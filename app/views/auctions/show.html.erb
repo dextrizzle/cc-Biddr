@@ -4,10 +4,15 @@
 <p><%= @auction.reserve_price %></p>
 <%= link_to 'back', auctions_path %>
 
+
+<% if @auction.user != current_user %>
 <h2>bid</h2>
-<%= simple_form_for [@auction, @bid], :url => auction_bids_path(@auction) do |f| %>
-    <%= f.input :amount, as: :string %>
-    <%= f.button :submit %>
+  <%= simple_form_for [@auction, @bid], :url => auction_bids_path(@auction) do |f| %>
+      <%= f.input :amount, as: :string %>
+      <%= f.button :submit %>
+  <% end %>
+<% else %>
+  !!!publish button here!!!
 <% end %>
 
 <h2>bid history</h2>
