@@ -4,6 +4,7 @@
 <h3>auctions</h3>
 <% @auctions.each do |auction| %>
     <p><%= link_to auction.title, auction_path(auction) %>
+      [<%= auction.aasm_state %>]
     <% if auction.user == current_user %>OWNER<%end%>
     </p>
 <% end %>
@@ -11,6 +12,7 @@
 <h3>watched auctions</h3>
 <% @watched_auctions.each do |auction| %>
     <p><%= link_to auction.auction.title, auction_path(auction.auction) %>
+      [<%= auction.auction.aasm_state %>]
       <% if auction.auction.user == current_user %>OWNER<%end%>
     </p>
 <% end %>
