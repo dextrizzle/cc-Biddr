@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'auction#index'
+  root 'auctions#index'
   resources :auctions do
     resources :bids, only: [:create]
   end

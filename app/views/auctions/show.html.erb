@@ -1,1 +1,16 @@
-<h1>auction show</h1>
+<h1><%= @auction.title %></h1>
+<p><%= @auction.details %></p>
+<p><%= @auction.ends_on %></p>
+<p><%= @auction.reserve_price %></p>
+<%= link_to 'back', auctions_path %>
+
+<h2>bid</h2>
+<%= simple_form_for [@auction, @bid], :url => auction_bids_path(@auction) do |f| %>
+    <%= f.input :amount, as: :string %>
+    <%= f.button :submit %>
+<% end %>
+
+<h2>bid history</h2>
+<% @auction.bids.each do |bid| %>
+    <p><%= bid.amount %></p>
+<% end %>
