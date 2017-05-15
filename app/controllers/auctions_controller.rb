@@ -18,6 +18,7 @@ class AuctionsController < ApplicationController
   def show
     @auction = Auction.find params[:id]
     @bid = Bid.new
+    @watch = @auction.watch_for(current_user)
   end
   private
 

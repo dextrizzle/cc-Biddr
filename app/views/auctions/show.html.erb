@@ -3,11 +3,16 @@
 <p><%= @auction.ends_on %></p>
 <p><%= @auction.reserve_price %></p>
 <p><%= "#{@auction.user.firstname} #{@auction.user.lastname}" %></p>
+<% if @watch.present? && @watch.persisted? %>
+  <%= link_to "Unwatch", auction_watch_path(@auction, @watch), method: :delete %>
+<% else %>
+  <%= link_to "Watch", auction_watches_path(@auction), method: :post %>
+<% end %>
+
 <%= link_to 'back', auctions_path %>
 
 
 <% if @auction.user != current_user %>
-    !!!!watch this auction!!!!
 <h2>bid</h2>
   <%= simple_form_for [@auction, @bid], :url => auction_bids_path(@auction) do |f| %>
       <%= f.input :amount, as: :string %>
