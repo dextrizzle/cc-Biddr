@@ -4,10 +4,7 @@ RSpec.describe AuctionsController, type: :controller do
   before(:each) do
     user = FactoryGirl.create(:user)
     sign_in user
-    # auction = FactoryGirl.create(:auction, user: user)
   end
-
-  # let(:auction) { FactoryGirl.create(:auction, { user: FactoryGirl.create(:user) }) }
 
   describe '#new' do
     before do
@@ -24,6 +21,7 @@ RSpec.describe AuctionsController, type: :controller do
     end
 
   end
+
   describe '#index' do
     before do
       get :index
@@ -37,6 +35,7 @@ RSpec.describe AuctionsController, type: :controller do
       expect(response).to render_template(:index)
     end
   end
+
   describe '#create' do
     context 'with valid params' do
       def valid_auction_params
@@ -72,6 +71,7 @@ RSpec.describe AuctionsController, type: :controller do
       end
     end
   end
+
   describe '#show' do
     before do
       post :create, params: { auction: FactoryGirl.attributes_for(:auction) }
@@ -84,4 +84,5 @@ RSpec.describe AuctionsController, type: :controller do
       expect(response).to render_template(:show)
     end
   end
+
 end
