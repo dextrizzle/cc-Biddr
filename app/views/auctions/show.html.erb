@@ -1,6 +1,6 @@
 <h1><%= @auction.title %><% if @auction.draft? %> [draft]<%end%></h1>
 <p>details: <%= @auction.details %></p>
-<p>auction ends: <%= @auction.ends_on %></p>
+<p>auction ends: <%= @auction.ends_on.to_formatted_s(:long) %></p>
 <p>reserve price: $<%= @auction.reserve_price %></p>
 <p>current price: $<%= @auction.current_price %></p>
 <p>posted by: <%= "#{@auction.user.firstname} #{@auction.user.lastname}" %></p>
@@ -26,10 +26,12 @@
 <% end %>
 
 <h2>bid history</h2>
+<div class="well">
 <% @auction.bids.order('created_at desc').each_with_index do |bid,index| %>
     <% if index == 0 %>
-      <p class="first-bid"><strong><%= "> $#{bid.amount} bid by #{bid.user.firstname} #{bid.user.lastname} at #{bid.created_at}" %></strong></p>
+      <p class="first-bid"><strong><%= "> $#{bid.amount} bid by #{bid.user.firstname} #{bid.user.lastname} at #{bid.created_at.to_formatted_s(:long)}" %></strong></p>
     <% else %>
-      <p class="bids"><%= "$#{bid.amount} bid by #{bid.user.firstname} #{bid.user.lastname} at #{bid.created_at}" %></p>
+      <p class="bids"><%= "$#{bid.amount} bid by #{bid.user.firstname} #{bid.user.lastname} at #{bid.created_at.to_formatted_s(:long)}" %></p>
     <% end %>
 <% end %>
+</div>
