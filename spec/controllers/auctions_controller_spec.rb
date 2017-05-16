@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe AuctionsController, type: :controller do
   describe '#new' do
+  before { controller.stub(:authenticate_user!).and_return true }
+
     before do
       get :new
     end
@@ -17,24 +19,22 @@ RSpec.describe AuctionsController, type: :controller do
     end
 
   end
+  describe '#index' do
+    before { controller.stub(:authenticate_user!).and_return true }
+    
+    let(:auction) { FactoryGirl.create(:auction) }
 
-  describe '#create' do
-    context 'with valid params' do
-      def valid_auction_params
-        post :create, params: { auction: FactoryGirl.attributes_for(:auction) }
-      end
-
-      it 'creates a new auction in the database' do
-        expect do
-          valid_auction_params
-        end.to change { Auction.count }.by(1)
-      end
-
-      it 'redirects to auction#show' do
-        valid_auction_params
-        expect(response).to redirect_to(auction_path(Auction.last))
-      end
+    it 'gets a HTTP 302 response' do
+      get :index
+      expect(response).to have_http_status(302)
     end
+    it 'renders index template' do
+      get :index
+      expect(response).to render_template(user_session_path)
+    end
+  end
+  describe '#create' do
+    before { controller.stub(:authenticate_user!).and_return true }
 
     context 'with invalid params' do
       def invalid_auction_params
