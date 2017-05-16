@@ -1,7 +1,7 @@
 <h1>Your bid history</h1>
 
 <ul>
-  <% @auctions.each do |a| %>
-      <li><%= link_to a.auction.title, "/auctions/#{a.auction.id}" %></li>
+  <% @auctions.order('created_at desc').each do |a| %>
+      <li>on <%= link_to a.auction.title, "/auctions/#{a.auction.id}" %> -- $<%= a.amount %></li>
   <% end %>
 </ul>
