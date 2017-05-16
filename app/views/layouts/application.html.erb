@@ -6,6 +6,11 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <style>
+      body {
+        background: url("http://dogspit.net/random/paven.png");
+      }
+    </style>
   </head>
 
   <body>
@@ -40,7 +45,9 @@
       <p class="alert alert-danger"><%= alert %></p>
   <% end %>
   <div class="container">
+    <div class="well">
     <%= yield %>
+    </div>
   </div>
   </body>
 </html>

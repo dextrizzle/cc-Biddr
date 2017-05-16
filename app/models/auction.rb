@@ -24,5 +24,6 @@ class Auction < ApplicationRecord
       transitions from: :draft, to: :published
     end
 
+    #reserve_met state gets changed in bid.rb
   end
 end
